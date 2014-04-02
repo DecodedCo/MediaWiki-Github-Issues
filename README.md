@@ -1,38 +1,41 @@
-Github Issues MediaWiki Extension
-=================================
+# Github Issues MediaWiki Extension - Private Repos
 
-Adds a tag to render a list of Github issues inline.
+Adds a tag to render a list of Github issues from private repos inline, using [basic authentication](https://developer.github.com/v3/auth/#basic-authentication) (OAuth).
 
-Usage
------
+## Setup
+
+Update issues.php with the relevant github username and [personal access token](https://github.com/blog/1509-personal-api-tokens).
+
+## Usage
 
 ```html
-<githubissues src="https://github.com/aaronpk/p3k/issues?labels=priority%3Aitching"/>
+<githubissues repo="repo-name"/>
 ```
 
-The base URL must be of the format `https://github.com/{user}/{repo}/issues`. Any of
-the filters on the [issues list API endpoint](http://developer.github.com/v3/issues/#list-issues-for-a-repository) 
-are accepted in the query string. 
+You can add a query string with any of the filters on the [issues list API endpoint](http://developer.github.com/v3/issues/#list-issues-for-a-repository).
+
+```html
+<githubissues repo="repo-name" query="sort=updated&direction=desc"/>
+```
 
 When the page is rendered, the titles and description of all referenced issues will
-be rendered in place of the tag. You can set the header level for the titles with 
+be rendered in place of the tag. You can set the header level for the titles with
 the `header` attribute (the default is h3). For example:
 
 ```html
-<githubissues header="h2" src="https://github.com/aaronpk/p3k/issues?labels=priority%3Aitching"/>
+<githubissues header="h2" repo="repo-name"/>
 ```
 
-You can specify how long you would like to cache the list from Github by specifying the 
+You can specify how long you would like to cache the list from Github by specifying the
 number of hours in the `cache` attribute. The default is 2 hours.
 
 ```html
-<githubissues cache="12" src="https://github.com/aaronpk/p3k/issues?labels=priority%3Aitching"/>
+<githubissues cache="12" repo="repo-name"/>
 ```
 
 
 
-License
--------
+# License
 
 Copyright 2013 by Aaron Parecki
 
